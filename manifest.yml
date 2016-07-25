@@ -1,0 +1,8 @@
+applications:
+- name: stromcrete-website-1
+  host: stromcrete-website-1
+  domain: stromcrete.com
+  memory: 128M
+  disk: 128M
+  instances: 1
+  buildpack: https://github.com/cloudfoundry-community/staticfile-buildpack.git 

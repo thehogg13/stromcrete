@@ -1,0 +1,50 @@
+.jumbotron h2{
+    color: white;
+}
+
+.jumbotron h4{
+    color: white;
+}
+.jumbotron p{
+    color: white;
+}
+
+.jumbotron {
+    margin-bottom: 0;
+}
+
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
+
+
+/* Add a gray background color and some padding to the footer */
+footer {
+    background-color: #5C5E5E;
+}
+
+.white-text {
+    color: white;
+}
+
+a:link
+{
+    color:lightgrey;
+}
+
+a:visited
+{
+    color:darkorange;
+}
+
+a:hover
+{
+    color:red;
+}
+
+#main_div {
+    background:#FE730E;
+}
