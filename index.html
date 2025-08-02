@@ -1,61 +1,452 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Stromcrete</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stromcrete - Professional Concreting Services | Bendigo & Surrounds</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #FF6B1A, #E55A0F);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(255, 107, 26, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .logo {
+            width: 300px;
+            height: auto;
+            margin: 0 auto 2rem;
+            display: block;
+            position: relative;
+            z-index: 1;
+            object-fit: contain;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .location {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 0;
+            background: linear-gradient(180deg, white 0%, #f8f9fa 100%);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #333333;
+            font-weight: 800;
+            position: relative;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Add CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF6B1A, #E55A0F);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin: 2rem auto;
+            box-shadow: 0 6px 20px rgba(255, 107, 26, 0.3);
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 107, 26, 0.4);
+            background: linear-gradient(135deg, #E55A0F, #D14E0A);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #FF6B1A, #E55A0F);
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid #eee;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #FF6B1A, #E55A0F);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 107, 26, 0.15);
+            border-color: #FF6B1A;
+        }
+
+        .service-card h3 {
+            color: #333333;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 4rem 0;
+            background: #ecf0f1;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-content h3 {
+            color: #333333;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #4a4a4a, #333333);
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .contact-item {
+            padding: 1.5rem;
+        }
+
+        .contact-item h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-link {
+            color: #FF6B1A;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            display: inline-block;
+            margin: 0.5rem 0;
+        }
+
+        .contact-link:hover {
+            color: #FF8A42;
+            text-decoration: underline;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            background: linear-gradient(135deg, #FF6B1A, #E55A0F);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(255, 107, 26, 0.3);
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, #E55A0F, #D14E0A);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 26, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 3px solid #FF6B1A;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .services-grid,
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<div class="jumbotron" style="background:#5C5E5E !important">
-    <div class="container text-center">
-        <img src="images/logo.jpeg" class="img-responsive center-block" style="width:70%" alt="Image">
-        <br>
-        <h2>Specialising in Domestic Concreting throughout Central Victoria</h2>
-        <h4>Contact Shaun for a quote today <a href="tel:0458595756">0458 595 756</a></h4>
-        <h4><a href="mailto:shaun@stromcrete.com?Subject=Website%20Enquiry" target="_top">shaun@stromcrete.com</a></h4>
-    </div>
-</div>
-
-<div class="container-fluid bg-3 text-center" id="main_div">
-    <h3>View just a few examples of our quality work below ... </h3><br>
-    <div class="row">
-        <div class="col-sm-6">
-            <h4>Outdoor Areas</h4>
-            <img src="images/jobs/patio.jpeg" class="img-responsive" style="width:100%" alt="Image">
+    <header>
+        <div class="container">
+            <!-- Replace 'logo.png' with your actual logo filename -->
+            <img src="images/logo.jpeg" alt="Stromcrete Logo" class="logo">
+            <h1>STROMCRETE</h1>
+            <p class="tagline">Excellence in Concrete • Built to Last • Trusted Since Day One</p>
+            <p class="location">Servicing Bendigo & Surrounds</p>
         </div>
-        <div class="col-sm-6">
-            <h4>Pools</h4>
-            <img src="images/jobs/pool.jpeg" class="img-responsive"  style="width:100%" alt="Image">
-        </div>
-    </div>
-</div>
+    </header>
 
-<div class="container-fluid bg-3 text-center" id="main_div">
-    <div class="row">
-        <div class="col-sm-6">
-            <h4>Pool Surrounds</h4>
-            <img src="images/jobs/poolside.jpeg" class="img-responsive" style="width:100%" alt="Image">
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Our Expert Services</h2>
+            <p class="section-subtitle">Delivering premium concrete solutions with over a decade of combined expertise. Every project backed by our commitment to quality, reliability, and customer satisfaction.</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Premium Shed Slabs</h3>
+                    <p>Precision-engineered concrete slabs for sheds, garages, and storage buildings. Built with proper reinforcement and superior finishing techniques that stand the test of time.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Durable Driveways</h3>
+                    <p>Professional-grade concrete driveways designed to withstand heavy traffic and harsh weather conditions while enhancing your property's curb appeal and value.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Commercial Footpaths</h3>
+                    <p>Safe, compliant concrete footpaths for residential and commercial properties. All work meets strict council requirements and Australian standards.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Designer Patios</h3>
+                    <p>Transform your outdoor living with expertly crafted concrete patios. Perfect for entertaining spaces that combine functionality with lasting beauty.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Exposed Aggregate Specialist</h3>
+                    <p>Premium decorative exposed aggregate finishes that deliver exceptional durability with stunning visual appeal. Custom aggregate selections available.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Complete Concrete Solutions</h3>
+                    <p>From residential projects to large commercial installations, we deliver professional results across all concrete applications with guaranteed quality.</p>
+                </div>
+            </div>
         </div>
-        <div class="col-sm-6">
-            <h4>Steps</h4>
-            <img src="images/jobs/step.jpeg" class="img-responsive" style="width:100%" alt="Image">
-        </div>
-    </div>
-    <br><br>
-</div>
+    </section>
 
-<footer class="container-fluid text-center white-text">
-    <br>
-    <p>Contact us via email: <a href="mailto:shaun@stromcrete.com?Subject=Website%20Enquiry" target="_top">Click Here</a></p>
-           <p><strong>Stromcrete</strong><br>
-            461 High Street<br>
-            Golden Square, Vic. 3555<br>
-            <a href="tel:0458595756">0458 595 756</a></p>
-</footer>
+    <section class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Quality Workmanship</h2>
+            <p class="section-subtitle">See the difference that experience, attention to detail, and premium materials make in every project we complete.</p>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <!-- Replace 'project1.jpg' with your actual image filename -->
+                    <img src="images/driveway.jpg" alt="Stromcrete Project 1" class="portfolio-image">
+                    <div class="portfolio-content">
+                        <h3>Premium Driveway Installation</h3>
+                        <p>High-quality concrete driveway with smooth finish and professional edging. This project showcases our attention to detail and commitment to delivering surfaces that enhance property value and curb appeal.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <!-- Replace 'project2.jpg' with your actual image filename -->
+                    <img src="images/exposed_pool.jpg" alt="Stromcrete Project 2" class="portfolio-image">
+                    <div class="portfolio-content">
+                        <h3>Exposed Aggregate Pool</h3>
+                        <p>Beautiful exposed aggregate pool surround featuring premium stone selection and expert finishing. This outdoor area combines durability with aesthetic appeal.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <!-- Replace 'project3.jpg' with your actual image filename -->
+                    <img src="images/shed_slab.jpg" alt="Stromcrete Project 3" class="portfolio-image">
+                    <div class="portfolio-content">
+                        <h3>Commercial Shed Slab</h3>
+                        <p>Large-scale concrete slab for commercial shed installation. Demonstrates our capability to handle significant projects with precision reinforcement and level finishing to Australian building standards.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="container">
+            <h2 class="section-title">Get Your Free Quote Today</h2>
+            <p class="section-subtitle">Ready to transform your space with professional concrete solutions? Contact Stromcrete for expert advice and competitive pricing.</p>
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <a href="tel:0458595756" class="cta-button">Call Now for Free Quote</a>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h3>Call Us</h3>
+                    <a href="tel:0458595756" class="contact-link">0458 595 756</a>
+                </div>
+                <div class="contact-item">
+                    <h3>Email Us</h3>
+                    <a href="mailto:shaun@stromcrete.com.au" class="contact-link">shaun@stromcrete.com.au</a>
+                </div>
+                <div class="contact-item">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=100037235306886" target="_blank" class="social-link">Facebook</a>
+                        <a href="https://www.instagram.com/stromcrete/" target="_blank" class="social-link">Instagram</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Stromcrete. Licensed & Insured Concrete Specialists • Bendigo & Surrounding Areas • Quality Guaranteed</p>
+        </div>
+    </footer>
 </body>
 </html>
