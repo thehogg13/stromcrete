@@ -110,29 +110,6 @@
             margin-right: auto;
         }
 
-        /* Add CTA Button */
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #FF6B1A, #E55A0F);
-            color: white;
-            padding: 1.2rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin: 2rem auto;
-            box-shadow: 0 6px 20px rgba(255, 107, 26, 0.3);
-            transition: all 0.4s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(255, 107, 26, 0.4);
-            background: linear-gradient(135deg, #E55A0F, #D14E0A);
-        }
-
         .section-title::after {
             content: '';
             position: absolute;
@@ -145,11 +122,30 @@
             border-radius: 2px;
         }
 
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        /* Carousel Styles */
+        .services-carousel {
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            will-change: transform;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            display: flex;
             gap: 2rem;
-            margin-bottom: 2rem;
+            padding: 0 1rem;
         }
 
         .service-card {
@@ -161,6 +157,7 @@
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            flex: 1;
         }
 
         .service-card::before {
@@ -185,6 +182,35 @@
             border-color: #FF6B1A;
         }
 
+        .service-card:hover .service-icon {
+            background: linear-gradient(135deg, #FF6B1A, #E55A0F);
+            transform: scale(1.1);
+        }
+
+        .service-card:hover .service-icon svg {
+            fill: white;
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transition: all 0.4s ease;
+            border: 2px solid #FF6B1A;
+        }
+
+        .service-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: #FF6B1A;
+            transition: fill 0.4s ease;
+        }
+
         .service-card h3 {
             color: #333333;
             margin-bottom: 1.5rem;
@@ -198,10 +224,95 @@
             font-size: 1rem;
         }
 
+        /* Navigation Arrows */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 107, 26, 0.9);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .carousel-nav:hover {
+            background: rgba(255, 107, 26, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-nav.prev {
+            left: -25px;
+        }
+
+        .carousel-nav.next {
+            right: -25px;
+        }
+
+        /* Pagination Dots */
+        .carousel-pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .carousel-dot.active {
+            background: #FF6B1A;
+            transform: scale(1.2);
+        }
+
+        .carousel-dot:hover {
+            background: #FF8A42;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .carousel-slide {
+                flex-direction: column;
+            }
+            
+            .service-card {
+                min-width: 100%;
+            }
+
+            .carousel-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .carousel-nav.prev {
+                left: -20px;
+            }
+
+            .carousel-nav.next {
+                right: -20px;
+            }
+        }
+
         /* Portfolio Section */
         .portfolio {
-            padding: 4rem 0;
-            background: #ecf0f1;
+            padding: 5rem 0;
+            background: #f8f9fa;
         }
 
         .portfolio-grid {
@@ -212,14 +323,16 @@
 
         .portfolio-item {
             background: white;
-            border-radius: 10px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            border: 1px solid #eee;
         }
 
         .portfolio-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(255, 107, 26, 0.15);
         }
 
         .portfolio-image {
@@ -245,9 +358,21 @@
 
         /* Contact Section */
         .contact {
-            padding: 4rem 0;
-            background: linear-gradient(135deg, #4a4a4a, #333333);
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #333333, #4a4a4a);
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,107,26,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
         }
 
         .contact-grid {
@@ -258,12 +383,15 @@
         }
 
         .contact-item {
-            padding: 1.5rem;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .contact-item h3 {
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
         }
 
         .contact-link {
@@ -304,6 +432,29 @@
             box-shadow: 0 8px 25px rgba(255, 107, 26, 0.4);
         }
 
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF6B1A, #E55A0F);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin: 2rem auto;
+            box-shadow: 0 6px 20px rgba(255, 107, 26, 0.3);
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 107, 26, 0.4);
+            background: linear-gradient(135deg, #E55A0F, #D14E0A);
+        }
+
         /* Footer */
         footer {
             background: #1a1a1a;
@@ -323,7 +474,6 @@
                 font-size: 2rem;
             }
             
-            .services-grid,
             .portfolio-grid {
                 grid-template-columns: 1fr;
             }
@@ -342,7 +492,6 @@
 <body>
     <header>
         <div class="container">
-            <!-- Replace 'logo.png' with your actual logo filename -->
             <img src="images/logo.jpeg" alt="Stromcrete Logo" class="logo">
             <h1>STROMCRETE</h1>
             <p class="tagline">Excellence in Concrete • Built to Last • Trusted Since Day One</p>
@@ -354,30 +503,100 @@
         <div class="container">
             <h2 class="section-title">Our Expert Services</h2>
             <p class="section-subtitle">Delivering premium concrete solutions with over a decade of combined expertise. Every project backed by our commitment to quality, reliability, and customer satisfaction.</p>
-            <div class="services-grid">
-                <div class="service-card">
-                    <h3>Premium Shed Slabs</h3>
-                    <p>Precision-engineered concrete slabs for sheds, garages, and storage buildings. Built with proper reinforcement and superior finishing techniques that stand the test of time.</p>
+            
+            <div class="services-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-track" id="carouselTrack">
+                        <!-- Slide 1: Shed Slabs + Driveways -->
+                        <div class="carousel-slide">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2 12l10-8 10 8v10h-6v-6h-8v6H2V12z"/>
+                                        <rect x="8" y="16" width="8" height="6"/>
+                                    </svg>
+                                </div>
+                                <h3>Premium Shed Slabs</h3>
+                                <p>Precision-engineered concrete slabs for sheds, garages, and storage buildings. Built with proper reinforcement and superior finishing techniques that stand the test of time.</p>
+                            </div>
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.22.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </div>
+                                <h3>Durable Driveways</h3>
+                                <p>Professional-grade concrete driveways designed to withstand heavy traffic and harsh weather conditions while enhancing your property's curb appeal and value.</p>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2: Footpaths + Patios -->
+                        <div class="carousel-slide">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2 14h20v2H2v-2zm0 4h20v2H2v-2zm0-8h20v2H2v-2zm0-4h20v2H2V6z"/>
+                                        <circle cx="6" cy="9" r="1"/>
+                                        <circle cx="12" cy="9" r="1"/>
+                                        <circle cx="18" cy="9" r="1"/>
+                                    </svg>
+                                </div>
+                                <h3>Commercial Footpaths</h3>
+                                <p>Safe, compliant concrete footpaths for residential and commercial properties. All work meets strict council requirements and Australian standards.</p>
+                            </div>
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2L2 7v10c0 5.55 3.84 9.739 9 10 5.16-.261 9-4.45 9-10V7l-10-5z"/>
+                                        <path d="M8 11h8v2H8v-2zm0 4h8v2H8v-2z"/>
+                                    </svg>
+                                </div>
+                                <h3>Designer Patios</h3>
+                                <p>Transform your outdoor living with expertly crafted concrete patios. Perfect for entertaining spaces that combine functionality with lasting beauty.</p>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3: Exposed Aggregate + Complete Solutions -->
+                        <div class="carousel-slide">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="6" cy="6" r="2"/>
+                                        <circle cx="12" cy="6" r="2"/>
+                                        <circle cx="18" cy="6" r="2"/>
+                                        <circle cx="6" cy="12" r="2"/>
+                                        <circle cx="12" cy="12" r="2"/>
+                                        <circle cx="18" cy="12" r="2"/>
+                                        <circle cx="6" cy="18" r="2"/>
+                                        <circle cx="12" cy="18" r="2"/>
+                                        <circle cx="18" cy="18" r="2"/>
+                                    </svg>
+                                </div>
+                                <h3>Exposed Aggregate Specialist</h3>
+                                <p>Premium decorative exposed aggregate finishes that deliver exceptional durability with stunning visual appeal. Custom aggregate selections available.</p>
+                            </div>
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                    </svg>
+                                </div>
+                                <h3>Complete Concrete Solutions</h3>
+                                <p>From residential projects to large commercial installations, we deliver professional results across all concrete applications with guaranteed quality.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation Arrows -->
+                    <button class="carousel-nav prev" id="prevBtn">‹</button>
+                    <button class="carousel-nav next" id="nextBtn">›</button>
                 </div>
-                <div class="service-card">
-                    <h3>Durable Driveways</h3>
-                    <p>Professional-grade concrete driveways designed to withstand heavy traffic and harsh weather conditions while enhancing your property's curb appeal and value.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Commercial Footpaths</h3>
-                    <p>Safe, compliant concrete footpaths for residential and commercial properties. All work meets strict council requirements and Australian standards.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Designer Patios</h3>
-                    <p>Transform your outdoor living with expertly crafted concrete patios. Perfect for entertaining spaces that combine functionality with lasting beauty.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Exposed Aggregate Specialist</h3>
-                    <p>Premium decorative exposed aggregate finishes that deliver exceptional durability with stunning visual appeal. Custom aggregate selections available.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Complete Concrete Solutions</h3>
-                    <p>From residential projects to large commercial installations, we deliver professional results across all concrete applications with guaranteed quality.</p>
+                
+                <!-- Pagination Dots -->
+                <div class="carousel-pagination" id="carouselDots">
+                    <button class="carousel-dot active" data-slide="0"></button>
+                    <button class="carousel-dot" data-slide="1"></button>
+                    <button class="carousel-dot" data-slide="2"></button>
                 </div>
             </div>
         </div>
@@ -389,7 +608,6 @@
             <p class="section-subtitle">See the difference that experience, attention to detail, and premium materials make in every project we complete.</p>
             <div class="portfolio-grid">
                 <div class="portfolio-item">
-                    <!-- Replace 'project1.jpg' with your actual image filename -->
                     <img src="images/driveway.jpg" alt="Stromcrete Project 1" class="portfolio-image">
                     <div class="portfolio-content">
                         <h3>Premium Driveway Installation</h3>
@@ -397,7 +615,6 @@
                     </div>
                 </div>
                 <div class="portfolio-item">
-                    <!-- Replace 'project2.jpg' with your actual image filename -->
                     <img src="images/exposed_pool.jpg" alt="Stromcrete Project 2" class="portfolio-image">
                     <div class="portfolio-content">
                         <h3>Exposed Aggregate Pool</h3>
@@ -405,7 +622,6 @@
                     </div>
                 </div>
                 <div class="portfolio-item">
-                    <!-- Replace 'project3.jpg' with your actual image filename -->
                     <img src="images/shed_slab.jpg" alt="Stromcrete Project 3" class="portfolio-image">
                     <div class="portfolio-content">
                         <h3>Commercial Shed Slab</h3>
@@ -448,5 +664,90 @@
             <p>&copy; 2025 Stromcrete. Licensed & Insured Concrete Specialists • Bendigo & Surrounding Areas • Quality Guaranteed</p>
         </div>
     </footer>
+
+    <script>
+        class ServiceCarousel {
+            constructor() {
+                this.currentSlide = 0;
+                this.totalSlides = 3;
+                this.autoAdvanceTimer = null;
+                this.autoAdvanceDelay = 5000; // 5 seconds
+                
+                this.init();
+                this.startAutoAdvance();
+            }
+
+            init() {
+                this.track = document.getElementById('carouselTrack');
+                this.prevBtn = document.getElementById('prevBtn');
+                this.nextBtn = document.getElementById('nextBtn');
+                this.dots = document.querySelectorAll('.carousel-dot');
+                
+                // Add event listeners
+                this.prevBtn.addEventListener('click', () => this.prevSlide());
+                this.nextBtn.addEventListener('click', () => this.nextSlide());
+                
+                this.dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => this.goToSlide(index));
+                });
+
+                // Pause auto-advance on hover
+                const carousel = document.querySelector('.services-carousel');
+                carousel.addEventListener('mouseenter', () => this.stopAutoAdvance());
+                carousel.addEventListener('mouseleave', () => this.startAutoAdvance());
+            }
+
+            updateCarousel() {
+                const translateX = -this.currentSlide * 100;
+                this.track.style.transform = `translateX(${translateX}%)`;
+                
+                // Update active dot
+                this.dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === this.currentSlide);
+                });
+            }
+
+            nextSlide() {
+                this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+                this.updateCarousel();
+                this.resetAutoAdvance();
+            }
+
+            prevSlide() {
+                this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+                this.updateCarousel();
+                this.resetAutoAdvance();
+            }
+
+            goToSlide(index) {
+                this.currentSlide = index;
+                this.updateCarousel();
+                this.resetAutoAdvance();
+            }
+
+            startAutoAdvance() {
+                this.autoAdvanceTimer = setInterval(() => {
+                    this.nextSlide();
+                }, this.autoAdvanceDelay);
+            }
+
+            stopAutoAdvance() {
+                if (this.autoAdvanceTimer) {
+                    clearInterval(this.autoAdvanceTimer);
+                    this.autoAdvanceTimer = null;
+                }
+            }
+
+            resetAutoAdvance() {
+                this.stopAutoAdvance();
+                this.startAutoAdvance();
+            }
+        }
+
+        // Initialize carousel when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new ServiceCarousel();
+        });
+    </script>
 </body>
 </html>
